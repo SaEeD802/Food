@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home Page {% endblock title %}
+{% block header %}
+    {% include 'header.html' %}
+{% endblock header %}
+{% block content %} 
+
+    <!--  About Section  -->
+    <div id="about" class="container-fluid wow fadeIn" id="about"data-wow-duration="1.5s">
+        <div class="row">
+            <div class="col-lg-6 has-img-bg"></div>
+            <div class="col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 py-5 my-5">
+                        <h2 class="mb-4" style="text-align: right;">درباره ما</h2>
+                        <p style="text-align: justify;">رستوران زیرنخلا، یکی از بهترین رستوران‌های منطقه با بیش از 10 سال تجربه در ارائه بهترین غذاهای خاورمیانه، ایرانی و مشهور به غذاهای دریایی است. با طعمی متفاوت و خاص، زیرنخلا با محیطی دنج و آرام، فضایی مناسب برای همه‌ی سلایق ارائه می‌دهد. این رستوران با تیمی مجرب از سرآشپزان و کارکنان با تجربه، همواره در خدمت شماست و با ارائه بهترین غذاها و خدمات با کیفیت، محبوبیت بالایی دارد. برای تجربه‌ی یک غذای خاص و فراموش نشدنی، به رستوران زیرنخلا سر بزنید.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  gallary Section  -->
+    <div id="gallary" class="text-center bg-dark text-light has-height-md middle-items wow fadeIn">
+        <h2 class="section-title">منوی رستوران</h2>
+    </div>
+    <div class="gallary row">
+        {% for post in posts %}
+        
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="{{ post.image.url }}" alt="" class="gallary-img" height="282.917px" width="282.917px">
+            <a href="{{ post.id }}" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- book a table Section  -->
+    <div class="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="book-table">
+        <div class="">
+            <h2 class="section-title mb-5">رزرو میز</h2>
+            <div class="row mb-5">
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="email" id="booktable" class="form-control form-control-lg custom-form-control" placeholder="EMAIL">
+                </div>
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="number" id="booktable" class="form-control form-control-lg custom-form-control" placeholder="NUMBER OF GUESTS" max="20" min="0">
+                </div>
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="time" id="booktable" class="form-control form-control-lg custom-form-control" placeholder="EMAIL">
+                </div>
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="date" id="booktable" class="form-control form-control-lg custom-form-control" placeholder="12/12/12">
+                </div>
+            </div>
+            <a href="#" class="btn btn-lg btn-primary" id="rounded-btn">FIND TABLE</a>
+        </div>
+    </div>
+
+    <!-- BLOG Section  -->
+    <div id="blog" class="container-fluid bg-dark text-light py-5 text-center wow fadeIn">
+        <h2 class="section-title py-5">EVENTS AT THE FOOD HUT</h2>
+        <div class="row justify-content-center">
+            <div class="col-sm-7 col-md-4 mb-5">
+                <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#foods" role="tab" aria-controls="pills-home" aria-selected="true">فست فود</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#juices" role="tab" aria-controls="pills-profile" aria-selected="false">نوشیدنی</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#iranifood" role="tab" aria-controls="pills-profile" aria-selected="false">غذای ایرانی</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="foods" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="row">
+                    {% for post in posts %}
+                        {% if 'fastfood' in post.type_food %}
+                            <!-- 250.983×133.733 -->
+                            <div class="col-md-4"> 
+                                <div class="card bg-transparent border my-3 my-md-0">
+                                    <img src="{{ post.image.url }}" width="347.983px" height="185.317px" alt="" class="rounded-0 card-img-top mg-responsive">
+                                    <div class="card-body">
+                                        <h1 class="text-center mb-4"><a href="{{ post.id }}" class="badge badge-primary">{{ post.price }}</a></h1>
+                                        <h4 class="pt20 pb20">{{ post.name }}</h4>
+                                        <p class="text-white">{{ post.text }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="juices" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="row">
+                    {% for post in posts %}
+                        {% if 'juices' in post.type_food %}
+                            <!-- 250.983×133.733 -->
+                            <div class="col-md-4"> 
+                                <div class="card bg-transparent border my-3 my-md-0">
+                                    <img src="{{ post.image.url }}" width="347.983px" height="185.317px" alt="" class="rounded-0 card-img-top mg-responsive">
+                                    <div class="card-body">
+                                        <h1 class="text-center mb-4"><a href="{{ post.id }}" class="badge badge-primary">{{ post.price }}</a></h1>
+                                        <h4 class="pt20 pb20">{{ post.name }}</h4>
+                                        <p class="text-white">{{ post.text }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="iranifood" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="row">
+                    {% for post in posts %}
+                        {% if 'iranifood' in post.type_food %}
+                            <!-- 250.983×133.733 -->
+                            <div class="col-md-4"> 
+                                <div class="card bg-transparent border my-3 my-md-0">
+                                    <img src="{{ post.image.url }}" width="347.983px" height="185.317px" alt="" class="rounded-0 card-img-top mg-responsive">
+                                    <div class="card-body">
+                                        <h1 class="text-center mb-4"><a href="{{ post.id }}" class="badge badge-primary">{{ post.price }}</a></h1>
+                                        <h4 class="pt20 pb20">{{ post.name }}</h4>
+                                        <p class="text-white">{{ post.text }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REVIEWS Section  -->
+    <div id="testmonial" class="container-fluid wow fadeIn bg-dark text-light has-height-lg middle-items">
+        <h2 class="section-title my-5 text-center">REVIEWS</h2>
+        <div class="row mt-3 mb-5">
+            <div class="col-md-4 my-3 my-md-0">
+                <div class="testmonial-card">
+                    <h3 class="testmonial-title">John Doe</h3>
+                    <h6 class="testmonial-subtitle">Web Designer</h6>
+                    <div class="testmonial-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum nobis eligendi, quaerat accusamus ipsum sequi dignissimos consequuntur blanditiis natus. Aperiam!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 my-3 my-md-0">
+                <div class="testmonial-card">
+                    <h3 class="testmonial-title">Steve Thomas</h3>
+                    <h6 class="testmonial-subtitle">UX/UI Designer</h6>
+                    <div class="testmonial-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum minus obcaecati cum eligendi perferendis magni dolorum ipsum magnam, sunt reiciendis natus. Aperiam!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 my-3 my-md-0">
+                <div class="testmonial-card">
+                    <h3 class="testmonial-title">Miranda Joy</h3>
+                    <h6 class="testmonial-subtitle">Graphic Designer</h6>
+                    <div class="testmonial-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, nam. Earum nobis eligendi, dignissimos consequuntur blanditiis natus. Aperiam!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT Section  -->
+    <div id="contact" class="container-fluid bg-dark text-light border-top wow fadeIn">
+        <div class="row">
+            <div class="col-md-6 px-0">
+                <div id="map" style="width: 100%; height: 100%; min-height: 400px"></div>
+            </div>
+            <div class="col-md-6 px-5 has-height-lg middle-items">
+                <h3>FIND US</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, laboriosam doloremque odio delectus, sunt magnam laborum impedit molestiae, magni quae ipsum, ullam eos! Alias suscipit impedit et, adipisci illo quam.</p>
+                <div class="text-muted">
+                    <p><span class="ti-location-pin pr-3"></span> 12345 Fake ST NoWhere, AB Country</p>
+                    <p><span class="ti-support pr-3"></span> (123) 456-7890</p>
+                    <p><span class="ti-email pr-3"></span>info@website.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
