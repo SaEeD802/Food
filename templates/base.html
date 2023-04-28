@@ -54,7 +54,11 @@
                         <a class="nav-link" href="#contact">ارتباط با ما</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="btn btn-primary ml-xl-4">ورود و ثبت نام</a>
+                        {% if user.is_authenticated %}
+                            <b style="color:red;"> welcome {{ user.username }}</b>|<a href="{% url 'logout' %}" class="btn btn-primary ml-xl-2">خروج</a>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="btn btn-primary ml-xl-4">ورود</a>|<a href="{% url 'accounts:signup' %}" class="btn btn-primary ml-xl-4">ثبت نام</a>
+                        {% endif %}
                     </li>
                 </ul>
             </div>

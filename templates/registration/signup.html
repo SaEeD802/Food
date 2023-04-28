@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ثبت نام</title>
+    <link rel="stylesheet" href="{% static 'style/css.css' %}">
+    <style>
+        p{ 
+         text-align:right;
+         font-weight: bold;
+         letter-spacing: 1px;
+     }
+     </style>
+</head>
+<body >
+    <div id="container" class="container">
+		<!-- FORM SECTION -->
+		<div class="row">
+    <div class="col align-items-center flex-col sign-in">
+        <div class="form-wrapper align-items-center" style='margin: 0px 50px 0px 1200px;'>
+            <div class="form sign-in">
+                <div class="input-group">
+                    <form method='POST' action="{% url 'accounts:signup' %}">
+                        {% if  error_message %}
+                            <p style="color:red;"> {{ error_message }} </p>
+                        
+                        {% endif %}
+                        {% csrf_token %}
+                        
+                        {{ form.as_p }} 
+                </div>
+               
+                <button type='submit' class="btn btn-primary">
+                 ثبت نام
+                </button></form>  
+                
+                <h6>
+                    <span>
+                      اکانت دارید؟
+                    </span>
+                    <b>
+            <a href="{% url 'login' %}"> ورود</a>
+                    </b>
+                </h6>
+            </div>
+        </div>
+        <div class="form-wrapper">
+
+        </div>
+    </div>
+</div>
+
+<div class="row content-row">
+    <!-- SIGN IN CONTENT -->
+    <div class="col align-items-center flex-col">
+        <div class="text sign-in">
+            <h2>
+                به ما به پیوندید
+            </h2>
+
+        </div>
+        <div class="img sign-in">
+
+        </div>
+    </div>
+    			<!-- END SIGN IN CONTENT -->
+			<!-- SIGN UP CONTENT -->
+			<div class="col align-items-center flex-col">
+				<div class="img sign-up">
+				
+				</div>
+				<div class="text sign-up">
+					<h2>
+						Join with us
+					</h2>
+	
+				</div>
+			</div>
+			<!-- END SIGN UP CONTENT -->
+		</div>
+		<!-- END CONTENT SECTION -->
+	</div>
+      <script src="{% static 'style/js.js' %}"></script>
+</body>
+</html>
