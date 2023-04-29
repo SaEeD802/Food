@@ -1,6 +1,6 @@
 # ZirNakhla
 ## This project is defined with Django, we made three separate apps for this project and defined interesting features inside the project
-![Food](page.jpeg)
+![Food](https://github.com/SaEeD802/Food/blob/main/page.jpeg)
 #### ZirNakhla is a Django project for table reservations
 
 
