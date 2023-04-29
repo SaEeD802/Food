@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} رزرو غذا {% endblock title %}
+
+{% block content %}
+    <br><br><br><br><br><br>
+    <div class="container">
+        <form method='POST' style="text-align: right;">
+            {% csrf_token %}
+
+            {{ form|crispy }}
+            <button type='submit' class="btn btn-primary" style="font-size: 19px; width: 150px; padding: 8px;">
+                رزرو میز
+            </button><br>
+                <br>
+        </form>
+    </div>
+
+    
+{% endblock %}
